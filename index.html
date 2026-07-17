@@ -183,10 +183,26 @@
   </main>
 
   <div class="cursor" aria-hidden="true"><i></i><span></span></div>
+  <div class="local-preview-notice" id="local-preview-notice" hidden role="alert">
+    <span>LOCAL PREVIEW REQUIRED</span>
+    <h2>This experience needs<br>a tiny local server.</h2>
+    <p>Close this tab, then double-click <strong>preview.cmd</strong> in the portfolio folder. It will open the complete WebGL experience automatically.</p>
+  </div>
   <noscript><p class="noscript">This portfolio works best with JavaScript enabled. You can still reach me at fonasongwelewis@gmail.com.</p></noscript>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
-  <script type="module" src="app.js"></script>
+  <script>
+    if (window.location.protocol === "file:") {
+      document.getElementById("intro")?.remove();
+      document.getElementById("local-preview-notice").hidden = false;
+      document.documentElement.classList.add("file-preview");
+    } else {
+      const application = document.createElement("script");
+      application.type = "module";
+      application.src = "app.js";
+      document.body.appendChild(application);
+    }
+  </script>
 </body>
 </html>
