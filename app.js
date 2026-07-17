@@ -268,7 +268,7 @@ if (!reduced) createCosmos();
 /* Portrait particles: local scatter + spring reassembly                       */
 /* -------------------------------------------------------------------------- */
 function createPortraitParticles() {
-  if (reduced) return;
+  if (reduced || coarse) return;
   const canvas = document.querySelector("#portrait-particles");
   const image = document.querySelector(".portrait-stage > img");
   const context = canvas.getContext("2d", { alpha: true });
